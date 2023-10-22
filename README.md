@@ -38,7 +38,7 @@ $ git add . && git commit -m "Initial Commit" && git push -u origin main
 ## Result 
 The below screenshot is the result of creating the Github Actions:
 
-<img src="./images/github_actions_result.png" width="400px" alt="Github actions result">
+<img src="./images/github_actions_result.png" width="90%" alt="Github actions result">
 
 ## Resources
 - [User Guide](https://docs.micronaut.io/4.1.5/guide/index.html)
