@@ -11,3 +11,14 @@ jobs:
       - name: 'Start Build Job'
         run: |
           echo "Starting the build job."
+      - name: 'Checkout'
+        uses: actions/checkout@v4.1.1
+      - name: Setup Java JDK
+        uses: actions/setup-java@v3.13.0
+        with:
+          java-version: 17
+      - name: 'Check Java Version'
+        run: |
+          java --version
+    
+      
