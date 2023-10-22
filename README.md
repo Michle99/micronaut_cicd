@@ -8,6 +8,38 @@ Create a simple micronaut project and github actions workflow.
 Create a Micronaut poject using the Micronaut Launch tool to generate your project:
 [Micronaut Launch tool](https://micronaut.io/launch)
 
+## Create Github Actions
+To create a github action:
+- Create a new repository for the sample micronaut project.
+- Go to the `actions` of the repository, click on the `set up a workflow yourself ->` link below the `Get started with Github Actions` header.
+- A new tab opens with a `.github/workflows/main.yml`, you can rename the `.yml`.
+- Enter the below script to create a github action:
+```
+name: github-actions-cicd-demo
+on:
+  push:
+    branches:
+      - '*'
+jobs:
+  build-job:
+    name: Build Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Start Build Job'
+        run: |
+          echo "Starting the build job."
+
+```
+- Add and commit the sample project to the repository using git commands:
+
+```
+$ git add . && git commit -m "Initial Commit" && git push -u origin main
+```
+## Result 
+The below screenshot is the result of creating the Github Actions:
+
+<img src="./images/github_actions_result.png" width="400px" alt="Github actions result">
+
 ## Resources
 - [User Guide](https://docs.micronaut.io/4.1.5/guide/index.html)
 - [API Reference](https://docs.micronaut.io/4.1.5/api/index.html)
