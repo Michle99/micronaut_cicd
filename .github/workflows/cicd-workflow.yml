@@ -1,0 +1,13 @@
+name: github-actions-cicd-demo
+on:
+  push:
+    branches:
+      - '*'
+jobs:
+  build-job:
+    name: Build Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Start Build Job'
+        run: |
+          echo "Starting the build job."
