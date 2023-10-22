@@ -21,5 +21,8 @@ jobs:
       - name: 'Check Java Version'
         run: |
           java --version
+      - name: 'Assemble JAR'
+        run: |
+          ./gradlew assemble
       
       
