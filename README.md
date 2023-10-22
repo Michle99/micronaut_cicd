@@ -4,6 +4,10 @@
 ## Description
 Create a simple micronaut project and github actions workflow.
 
+## Getting Started
+Create a Micronaut poject using the Micronaut Launch tool to generate your project:
+[Micronaut Launch tool](https://micronaut.io/launch)
+
 ## Resources
 - [User Guide](https://docs.micronaut.io/4.1.5/guide/index.html)
 - [API Reference](https://docs.micronaut.io/4.1.5/api/index.html)
