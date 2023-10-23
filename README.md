@@ -76,6 +76,23 @@ Gradle comes pre-installed in the Github runner VM, so we can simply add a step 
   run: |
     ./gradlew assemble
 ```
+#### Build the JAR Error
+While building the JAR file using the `./gradlew assemble`, the below error was encountered.
+
+#### Build JAR Error Screenshot
+<img src="./images/build_jar_error.png" width="90%" alt="Build Jar Error">
+
+<img src="./images/build_error_again.png" width="90%" alt="Build Jar Error">
+
+
+#### Build JAR Error Solution
+The error occurs because the `./gradlew` is not an executable file. So, change the `./gradlew` to an executable file using the below command in a git bash window.
+
+```
+git update-index --chmod=+x gradlew
+```
+<img src="./images/build_assemble_soln.png" width="90%" alt="Build Jar Error Solution">
+
 
 ## Publishing the JAR
 So, the first build artifact is completed! Problem is once the job is complete, if we did nothing else, we would lose our JAR. It would simply go away since it’s stored in the ephemeral storage on the runner VM. So we need to do something with the JAR after we build it.
