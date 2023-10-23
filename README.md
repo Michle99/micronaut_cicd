@@ -2,9 +2,25 @@
 
 [![github-actions-cicd-demo](https://github.com/Michle99/micronaut_cicd/actions/workflows/cicd-workflow.yml/badge.svg)](https://github.com/Michle99/micronaut_cicd/actions/workflows/cicd-workflow.yml)
 
+## Table of Contents
+1. [Description](#description)
+2. [Getting Started](#getting-started)
+3. [Intro to Actions](#intro-to-actions)
+    1. [Checkout Action](#checkout-action)
+    2. [Setup Java](#setup-java)
+    3. [Progress Check](#progress-check)
+    4. [Progress Check Screenshot](#progress-check-screenshot)
+4. [Building the JAR](#building-the-jar)
+5. [Publishing the JAR](#publishing-the-jar)
+6. [Build and Publish JAR Screenshots](#build-and-publish-jar-screenshots)
+7. [Download the JAR file](#download-the-jar-file)
+8. [Run Downloaded JAR file](#run-downloaded-jar-file)
+9. [Tutorial Resources](#tutorial-resources)
+10. [Micronaut Resources](#micronaut-resources)
+
 ## Description
 
-Create a simple micronaut project and github actions workflow.
+Create a simple micronaut project and github actions workflow. Built and publish a JAR file, and tested the downloaded JAR by running the JAR file.
 
 ## Getting Started
 
@@ -52,7 +68,7 @@ git add . && git commit -m "Checkout code and Setup Java 17" && git push -u orig
 #### Progress Check Screenshot
 <img src="./images/progress_check.png" width="90%" alt="Progress Check image">
 
-#### Building the JAR
+## Building the JAR
 Gradle comes pre-installed in the Github runner VM, so we can simply add a step to invoke the *assemble* task with Gradle, and the JAR will be available in our workspace once it’s complete:
 
 ```
@@ -61,7 +77,7 @@ Gradle comes pre-installed in the Github runner VM, so we can simply add a step 
     ./gradlew assemble
 ```
 
-#### Publishing the JAR
+## Publishing the JAR
 So, the first build artifact is completed! Problem is once the job is complete, if we did nothing else, we would lose our JAR. It would simply go away since it’s stored in the ephemeral storage on the runner VM. So we need to do something with the JAR after we build it.
 To avoid this, simply “publish” the artifact, which is another way of saying “make the JAR available for download after the runner VM has terminated.”
 
@@ -91,18 +107,18 @@ push -u origin part-2
 ```
 This result in the JAR being built and artifact being published and ready to be downloaded.
 
-#### Build and Publish JAR Screenshots
+## Build and Publish JAR Screenshots
 <img src="./images/assemble_jar.png" width="90%" alt="Assembled Jar">
 
 <img src="./images/publish_jar.png" width="90%" alt="Publish Jar">
 
 
-#### Download the JAR file
+## Download the JAR file
 To download the JAR file, select *Summary* and download the file.
 
 <img src="./images/download_jar.png" width="90%" alt="Download JAR file">
 
-#### Run Downloaded JAR file
+## Run Downloaded JAR file
 Download, unzip, and run the JAR file, and the application will start up.
 
 <img src="./images/run_jar.png" width="90%" alt="Application run">
