@@ -50,7 +50,7 @@ To use an action, visit the action’s page in the marketplace and click “Use 
 git add . && git commit -m "Checkout code and Setup Java 17" && git push -u origin part-2
 ```
 #### Progress Check Screenshot
-<img src="./images/progress_check.png" width="60%" alt="Progress Check image">
+<img src="./images/progress_check.png" width="90%" alt="Progress Check image">
 
 #### Building the JAR
 Gradle comes pre-installed in the Github runner VM, so we can simply add a step to invoke the *assemble* task with Gradle, and the JAR will be available in our workspace once it’s complete:
@@ -92,20 +92,20 @@ push -u origin part-2
 This result in the JAR being built and artifact being published and ready to be downloaded.
 
 #### Build and Publish JAR Screenshots
-<img src="./images/assemble_jar.png" width="60%" alt="Assembled Jar">
+<img src="./images/assemble_jar.png" width="90%" alt="Assembled Jar">
 
-<img src="./images/publish_jar.png" width="60%" alt="Publish Jar">
+<img src="./images/publish_jar.png" width="90%" alt="Publish Jar">
 
 
 #### Download the JAR file
 To download the JAR file, select *Summary* and download the file.
 
-<img src="./images/download_jar.png" width="60%" alt="Download JAR file">
+<img src="./images/download_jar.png" width="90%" alt="Download JAR file">
 
 #### Run Downloaded JAR file
 Download, unzip, and run the JAR file, and the application will start up.
 
-<img src="./images/run_jar.png" width="60%" alt="Application run">
+<img src="./images/run_jar.png" width="90%" alt="Application run">
 
 ## Tutorial Resources
 The above project was developed using the resources below:
