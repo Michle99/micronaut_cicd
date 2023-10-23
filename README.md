@@ -11,12 +11,14 @@ Create a simple micronaut project and github actions workflow.
 Create a Micronaut poject using the Micronaut Launch tool to generate your project:
 [Micronaut Launch tool](https://micronaut.io/launch)
 
-## Build and Publishing a JAR
+## Intro to Actions
 
 Continuing from the Creating a Github Action, the next step is to build and publish a JAR using Github actions.
 
 Carry out the following steps:
 To use an action, visit the action’s page in the marketplace and click “Use latest version” (or choose a specific version).
+
+#### Checkout Action
 - Visit the github actions marketplace, get the `checkout` action. click “Use latest version”.
 - The below YAML is generated:
 ```
@@ -24,6 +26,7 @@ To use an action, visit the action’s page in the marketplace and click “Use 
   uses: actions/checkout@v4.1.1
 ```
 
+#### Setup Java
 - From the same marketplace, search for `setup-java-jdk`, and choose `Setup Java JDK` and get the necessary YAML below.
 
 ```
@@ -41,13 +44,74 @@ To use an action, visit the action’s page in the marketplace and click “Use 
   run: |
     java --version
 ```
-- Progress Check
+ #### Progress Check
 
 ```
 git add . && git commit -m "Checkout code and Setup Java 17" && git push -u origin part-2
 ```
+#### Progress Check Screenshot
+<img src="./images/progress_check.png" width="60%" alt="Progress Check image">
 
-## Resources
+#### Building the JAR
+Gradle comes pre-installed in the Github runner VM, so we can simply add a step to invoke the *assemble* task with Gradle, and the JAR will be available in our workspace once it’s complete:
+
+```
+- name: 'Assemble JAR'
+  run: |
+    ./gradlew assemble
+```
+
+#### Publishing the JAR
+So, the first build artifact is completed! Problem is once the job is complete, if we did nothing else, we would lose our JAR. It would simply go away since it’s stored in the ephemeral storage on the runner VM. So we need to do something with the JAR after we build it.
+To avoid this, simply “publish” the artifact, which is another way of saying “make the JAR available for download after the runner VM has terminated.”
+
+Carry out the following steps:
+- Step to get the current version number to the JAR filename:
+
+```
+- name: 'Get Version Number'
+  run: |
+    echo "VERSION=$(./gradlew properties -q | grep "version:" | 
+    awk '{print $2}')" >> $GITHUB_ENV
+```
+ - Step to publish the JAR:
+
+ ```
+ - name: 'Publish JAR'
+   uses: actions/upload-artifact@v3.1.3
+   with:
+     name: 'micronaut_github_actions_cicd-${{env.VERSION}}-all.jar'
+     path: build/libs/*-all.jar
+ ```
+
+- Commit and push changes to remote repo:
+```
+git add . && git commit -m “Build & Publish JAR" && git
+push -u origin part-2
+```
+This result in the JAR being built and artifact being published and ready to be downloaded.
+
+#### Build and Publish JAR Screenshots
+<img src="./images/assemble_jar.png" width="60%" alt="Assembled Jar">
+
+<img src="./images/publish_jar.png" width="60%" alt="Publish Jar">
+
+
+#### Download the JAR file
+To download the JAR file, select *Summary* and download the file.
+
+<img src="./images/download_jar.png" width="60%" alt="Download JAR file">
+
+#### Run Downloaded JAR file
+Download, unzip, and run the JAR file, and the application will start up.
+
+<img src="./images/run_jar.png" width="60%" alt="Application run">
+
+## Tutorial Resources
+The above project was developed using the resources below:
+[Introducing Micronaut by Todd Raymond Sharp](https://www.amazon.com/Introducing-Micronaut-Deploy-Microservices-Oracle/dp/1484282892).
+
+## Micronaut Resources
 
 - [User Guide](https://docs.micronaut.io/4.1.5/guide/index.html)
 - [API Reference](https://docs.micronaut.io/4.1.5/api/index.html)
